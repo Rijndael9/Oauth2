@@ -1,0 +1,17 @@
+<html>
+{% if user and not user.is_anonymous %}
+<head>
+  <title> Oauth2 with Django </title>
+  <a>Hello, {{ user.get_full_name }}!</a>
+</head>
+<body>
+  <br>
+  <a href="/logout">Logout</a>
+{% else %}
+	<center><b><h1>Try Oauth2 with social networks!</h1></b></center>
+  <p><a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img src="https://lanterns.buzz/images/sign-in-with-twitter.png" width="300"  alt="Login with twitter"></a></p>
+  <p><a href="{% url 'social:begin' 'facebook' %}"><img src="http://i.stack.imgur.com/pZzc4.png" width="300" alt="Login with facebook"></a></p>
+  <p><a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><img src="https://tctechcrunch2011.files.wordpress.com/2013/04/sign-in-with-google.png" width="320" alt="Login with google"></a></p>
+{% endif %}
+</body>
+</html>
